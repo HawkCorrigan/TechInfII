@@ -7,8 +7,8 @@ void *thredder(void *arg) {
     int *num = arg;
     int actualrealnumber = *num;
     while (1) {
-        printf("Thread %d: Hello World!\n", actualrealnumber);
-        sleep(5);
+        printf("Thread %d: Hello World!\n", actualrealnumber + 1);
+        sleep(1);
     }
 }
 

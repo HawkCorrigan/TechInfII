@@ -73,7 +73,7 @@ static void *barber_main(void *arg) {
     /* Do the barber job */
     while (1) {
         /* I want to cut hair */
-        /*I want to be free -e*/
+        /* I want to be free -e */
         sem_post(&(s->cut_barber_ready));
         /* I am waiting for a client */
         printf("barber %d waiting for customer\n", std->thread_num);
@@ -213,7 +213,7 @@ int main(int argc, char **argv) {
 
     memset(&s, 0, sizeof(s));
     s.barbers_num = 4;
-    s.customers_num = 20;
+    s.customers_num = 30;
     s.customers_shop_max = 20;
 
     shop_create(&s);
