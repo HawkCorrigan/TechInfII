@@ -84,7 +84,43 @@ Raceconditions kann man leicht mit Semaphores lösen. Bspw. kann man atomic Vari
 
 ## b) Pseudocode zu TestAndSet, Swap, FetchAndAdd
 
+```pseudocode
+atomar function TestAndSet(address)
+    oldvalue=address;
+    address=1;
+    return oldvalue;
+```
+
+```pseudocode
+atomar function Swap(a1, a2)
+    temp=a1;
+    a1=a2;
+    a2=temp;
+```
+
+```pseudocode
+atomar function FetchAndAdd(address)
+    oldvalue=address;
+    address=address+1;
+    return oldvalue;
+```
+
 ## c) binäre Semaphore
+typedef struct semaphor{
+    bool v;
+    Queue *q;
+}
+void init(Semaphor *s, bool v){
+    s->v=v;
+    s->queue.empty();
+}
+void P(Semaphor *s){
+
+}
+void V(Semaphor *s){
+
+}
+
 
 ## d) Dining-Philosophers-Problem: Ist die Lösung Deadlockfrei?
 
