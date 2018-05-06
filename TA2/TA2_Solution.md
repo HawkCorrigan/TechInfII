@@ -123,7 +123,31 @@ void V(Semaphor *s){
 
 
 ## d) Dining-Philosophers-Problem: Ist die Lösung Deadlockfrei?
+circular wait wird ausgeschlossen.
+Es ist nicht starvation free, da ein Philosoph nachdem er fertig ist mit Essen und die Gabeln wieder hinlegt, er sie sofort wieder aufnehmen kann bevor der andere der auf ihn wartet sie sich nehmen kann.
 
 # Aufgabe 4)
+1. -2|2?
 
-# Aufgabe 5)
+2.
+101 Semaphore S1=0
+102 Semaphore S2=-1
+103 Semaphore S3=-2
+104 start(P1,P2,P3)
+200 down(S1)
+211 down(S1)
+212 up(S2)
+216 down(S1)
+217 up(S2)
+300 down(S2)
+306 down(S2)
+307 up(S1)
+308 up(S3)
+311 down(S2)
+312 up(S1)
+400 down(S3)
+
+Ich glaube dass der Part nicht ganz funktioniert weil S1 nicht sauber stirbt nach Zeile 308 aber ich weiss auch nicht wie man es lösen soll
+
+3.a.)2
+up 3 wird unnötig und dafür lässt man p2 weiterlaufen
