@@ -83,7 +83,29 @@ Die Raceconditions entstehen an den Stellen, da mehrer Threads gleichzeitig auf 
 Raceconditions kann man leicht mit Semaphores lösen. Bspw. kann man atomic Variablen verwenden, auf die nur ein Thread gleichzeitig zugreifen kann. Man könnte auch mit verschiedenen Bool Variablen arbeiten, um den Zugang für andere Threads zu blockieren, bis der Aktuelle fertig ist. 
 
 ## b) Pseudocode zu TestAndSet, Swap, FetchAndAdd
+```
+atomar function testAndSet(a,b,c)
+	if(compare(a,b))
+		s.wait()
+		then set(c) 
+		s.signal()
+		and  return true
+	else return false
+	end
+end
 
+atomar function swap(other)
+	set(tmp, other)
+	set(other, this)
+	set(this, tmp)
+end
+
+atomar function FetchAndAdd(Value)
+	old = get(this)
+	set(this, value)
+	return old
+end
+```
 ## c) binäre Semaphore
 
 ## d) Dining-Philosophers-Problem: Ist die Lösung Deadlockfrei?
