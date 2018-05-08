@@ -86,9 +86,7 @@ Raceconditions kann man leicht mit Semaphores lösen. Bspw. kann man atomic Vari
 ```
 atomar function testAndSet(a,b,c)
 	if(compare(a,b))
-		s.wait()
 		then set(c) 
-		s.signal()
 		and  return true
 	else return false
 	end
@@ -107,6 +105,35 @@ atomar function FetchAndAdd(Value)
 end
 ```
 ## c) binäre Semaphore
+```
+typedef struct semaphor{
+	bool occupied;
+	semaphor(){
+		occupied = false;
+	}
+	wait(){
+		while(occupied){}
+		occupied = true
+	}
+	post(){
+		occupied = false
+	}
+}
+
+atomar function TestAndAdd(a, b, c) 
+	semaphore s;
+	s.wait()
+	if (a == b) 
+		a := a + c 
+		s.post()
+		return true 
+	else 
+		s.post()
+		return false 
+	end 
+end
+```
+
 
 ## d) Dining-Philosophers-Problem: Ist die Lösung Deadlockfrei?
 
