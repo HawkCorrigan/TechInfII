@@ -76,7 +76,7 @@ TT = 97
 
 ## a) Race Conditions, Deadlock, Starvation und Lösungen
 
-![Critical Sections](3aCriticalSections.png)
+![Critical Sections](3aCriticalSections.PNG)
 
 Die Raceconditions entstehen an den Stellen, da mehrer Threads gleichzeitig auf die globalen Variablen zu greifen und diese auch global ändern. Wenn Thread 1 in die Section geht und num um 1 erhöht, ist Thread 2 evtl. auch schon in der If-Bedingung drin, wenn es aber bei `buf[num]` ist hat Thread 1 num schon hochgezählt. Dadurch kann es schnell zu Fehlern kommen. Das gleich kann auch bei `function pop()` passieren.
 
