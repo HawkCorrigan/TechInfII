@@ -1,7 +1,22 @@
 # Aufgabe 1)
-## a) Wie verhält sich eine Applikation die aus mehreren Prozessen bzw. aus mehreren UserspaceThreads besteht bei einem blockierenden Diskzugriff?
+## a) Wie verhält sich eine Applikation, die aus mehreren Prozessen bzw. aus mehreren UserspaceThreads besteht bei einem blockierenden Diskzugriff?
+
+Bei blockierendem Zugriff wird der gesamte Prozess und dessen Threads angehalten.
+Eine Applikation aus mehreren Prozessen hat also nicht zwingend alle Prozesse blockiert, während
+die Applikation mit mehreren Threads komplett blockiert.
 
 ## b) Welche der folgenden Ressourcen werden von allen Threads eines Prozesses geteilt und welche bestehen pro Thread? Program-Counter, Heap-Speicher, globale Variablen, Stack, CPU-Register, geöffnete Dateien, Accounting- und Benutzer-Informationen.
+
+Geteilt:
+Heap-Speicher
+Globale Variablen
+Geöffnete Dateien
+Accounting- und Benutzer-Informationen
+
+Pro Thread:
+Program Counter
+Stack
+CPU-Register
 
 # Aufgabe 2)
 ## a) Langezeit- / Kurzzeitscheduling
