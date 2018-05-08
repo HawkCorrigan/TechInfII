@@ -107,28 +107,23 @@ end
 ## c) binäre Semaphore
 ```
 typedef struct semaphor{
-	bool occupied;
+
 	semaphor(){
-		occupied = false;
+
 	}
 	wait(){
-		while(occupied){}
-		occupied = true
+		while(TestAndAdd(..., -1)) do nothing
 	}
 	post(){
-		occupied = false
+		TestAndAdd(..., 1)
 	}
 }
 
 atomar function TestAndAdd(a, b, c) 
-	semaphore s;
-	s.wait()
 	if (a == b) 
 		a := a + c 
-		s.post()
 		return true 
 	else 
-		s.post()
 		return false 
 	end 
 end
