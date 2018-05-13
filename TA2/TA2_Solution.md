@@ -1,7 +1,22 @@
 # Aufgabe 1)
-## a) Wie verhält sich eine Applikation die aus mehreren Prozessen bzw. aus mehreren UserspaceThreads besteht bei einem blockierenden Diskzugriff?
+## a) Wie verhält sich eine Applikation, die aus mehreren Prozessen bzw. aus mehreren UserspaceThreads besteht bei einem blockierenden Diskzugriff?
+
+Bei blockierendem Zugriff wird der gesamte Prozess und dessen Threads angehalten.
+Eine Applikation aus mehreren Prozessen hat also nicht zwingend alle Prozesse blockiert, während
+die Applikation mit mehreren Threads komplett blockiert.
 
 ## b) Welche der folgenden Ressourcen werden von allen Threads eines Prozesses geteilt und welche bestehen pro Thread? Program-Counter, Heap-Speicher, globale Variablen, Stack, CPU-Register, geöffnete Dateien, Accounting- und Benutzer-Informationen.
+
+Geteilt:
+Heap-Speicher
+Globale Variablen
+Geöffnete Dateien
+Accounting- und Benutzer-Informationen
+
+Pro Thread:
+Program Counter
+Stack
+CPU-Register
 
 # Aufgabe 2)
 ## a) Langezeit- / Kurzzeitscheduling
@@ -84,43 +99,53 @@ Raceconditions kann man leicht mit Semaphores lösen. Bspw. kann man atomic Vari
 
 ## b) Pseudocode zu TestAndSet, Swap, FetchAndAdd
 
-```pseudocode
-atomar function TestAndSet(address)
-    oldvalue=address;
-    address=1;
-    return oldvalue;
 ```
+atomar function testAndSet(a,b,c)
+	if(compare(a,b))
+		then set(c) 
+		and  return true
+	else return false
+	end
+end
 
-```pseudocode
-atomar function Swap(a1, a2)
-    temp=a1;
-    a1=a2;
-    a2=temp;
+atomar function swap(other)
+	set(tmp, other)
+	set(other, this)
+	set(this, tmp)
+end
+
+atomar function FetchAndAdd(Value)
+	old = get(this)
+	set(this, value)
+	return old
+end
 ```
-
-```pseudocode
-atomar function FetchAndAdd(address)
-    oldvalue=address;
-    address=address+1;
-    return oldvalue;
-```
-
 ## c) binäre Semaphore
+```
 typedef struct semaphor{
-    bool v;
-    Queue *q;
-}
-void init(Semaphor *s, bool v){
-    s->v=v;
-    s->queue.empty();
-}
-void P(Semaphor *s){
-
-}
-void V(Semaphor *s){
-
+  int a = 0;
+  int b = 0;
+	semaphor(){}
+	wait(){
+		while(!TestAndAdd(a, b, -1)){}
+	}
+	post(){
+		TestAndAdd(a,b, 1)
+	}
 }
 
+atomar function TestAndAdd(int &a,int &b, c) 
+	if (a == b) 
+		a := a + c 
+		return true 
+	else 
+		return false 
+	end 
+end
+```
+Um eine binäre Semaphore mit TestAndAdd zu erstellen, muss man sie mithilfe von 2 Werten aufbauen, die durch die TestAndAdd verändert werden. Wird in einem Thread nun die wait() Funktion aufgerufen, erfüllt
+dieser zunächst den Test und ändert den Wert a (c = -1). Dadurch bestehen alle anderen Threads den Test nicht, und bleiben in der while - Schleife hängen. Ist der erste Thread fertig und ruft podt() auf, wird
+die Änderung von a wieder Rückgängig gemacht (c = 1) und der nächste Thread besteht wieder den Test und ändert a.
 
 ## d) Dining-Philosophers-Problem: Ist die Lösung Deadlockfrei?
 circular wait wird ausgeschlossen.

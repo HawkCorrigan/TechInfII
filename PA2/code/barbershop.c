@@ -107,8 +107,9 @@ static void *customer_main(void *arg) {
     s = std->shop;
 
     /* Try to enter the shop */
-    sem_getvalue(&(s->customers_in_shop), &(s->customers_curr));
+    //sem_getvalue(&(s->customers_in_shop), &(s->customers_curr));
     if (s->customers_curr >= 20) return 0;
+    s->customers_curr++;
     sem_post(&(s->customers_in_shop));
     /* Wait on the sofa */
     printf("customer %d sitting on sofa, waits for barber\n",
@@ -135,6 +136,7 @@ static void *customer_main(void *arg) {
     //plätze ist mir nichts Besseres eingefallen.
     //So muss jemand im Shop bleiben.
     sem_wait(&(s->customers_in_shop));
+    s->customers_curr--;
 
     printf("customer %d left the shop, %d still in the shop\n",
            std->thread_num, s->customers_curr);
