@@ -1,3 +1,11 @@
+2.1:
+
+Beim spaltenweisen Vorgehen hat die CPU deutlich mehr cache-references und cache-misses, sowie etwas mehr
+branch-misses. Jeweils das neu zugegriffene Array wird also neu gecached, das least recently used - Element
+wird ersetzt. Da man aber danach wieder in ein neues, ungecachetes Array einsteigt, geht das immer so weiter.
+
+2.2:
+
 1. Der Identifier des allokierten (und geteilten) Speichersegments (mit 0en) wird zurückgegeben.
 2. Check, ob das vorher allokierte Speichersegment zur Löschung markiert wurde.
 3. Key wird mit anderen im Kernel verglichen und entscheiden ob ein neues Segment erstellt wird/nicht.
