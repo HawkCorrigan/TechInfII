@@ -152,27 +152,44 @@ circular wait wird ausgeschlossen.
 Es ist nicht starvation free, da ein Philosoph nachdem er fertig ist mit Essen und die Gabeln wieder hinlegt, er sie sofort wieder aufnehmen kann bevor der andere der auf ihn wartet sie sich nehmen kann.
 
 # Aufgabe 4)
-1. -2|2?
+1. 
+
+![Skizze](WunderschoeneSkizze4a.png)
+Unter der Annahme, dass B1 und A1-6 jeweils eine Sekunde dauern, und der Rest keine Zeit benötigt sieht das Bild nach 9s wie oben skizziert aus. Läuft das Programm in einer Endlosschleife ist nach weiteren 8s ist ein um 2 verschobenes Dreieck der selben Form gezeichnet. Nach 3 weiteren Sekunden, also bei Sekunde 20 befinden sich der Zeichnkopf demnach bei \
+**(-2, -2)**.
 
 2.
+```
 101 Semaphore S1=0
 102 Semaphore S2=-1
 103 Semaphore S3=-2
 104 start(P1,P2,P3)
-200 down(S1)
-211 down(S1)
-212 up(S2)
-216 down(S1)
-217 up(S2)
-300 down(S2)
-306 down(S2)
-307 up(S1)
-308 up(S3)
-311 down(S2)
-312 up(S1)
-400 down(S3)
 
-Ich glaube dass der Part nicht ganz funktioniert weil S1 nicht sauber stirbt nach Zeile 308 aber ich weiss auch nicht wie man es lösen soll
+200 down(S1)		//Start: P1 startet: S1 = -1
+205 (A1)
+210 (A4)
+212 up(S2)		//S2 = 0, P2 Startet
+213 down(S1)    	//S1 = -2, P1 Wartet
+215 (A3)
+216 up(S2)		//S2 = -1
+217 up(S2)		//S2 = 0, P2 Startet
+218 down(S1)		//S1 = -1, P1 Wartet
 
-3.a.)2
-up 3 wird unnötig und dafür lässt man p2 weiterlaufen
+300 down(S2)		//P2 startet: S2 = -1
+305 A1
+307 up(S3)		//S3 = -1
+308 up(S3)		//S3 = 0, P3 Startet
+309 down(S2)		//S2 = -2, P2 Wartet
+310 A2
+311 up(S1)		//S1 = 0, P1 Startet
+312 down(S2)		//S2 = -1, P2 Wartet  Ende: S1 = 0, S2 = -1, S3 = -2		
+
+400 down(S3)		//P3 Startet: S3 = -1
+405 (A5)
+410 (A6)
+415 (A2)
+416 up(S1)		//S1 = -1
+417 up(S1)		//S1 = 0, P1 Startet
+418 down(S3)		//S3 = -2, P3 Wartet
+
+```
