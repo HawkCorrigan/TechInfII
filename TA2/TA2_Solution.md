@@ -176,11 +176,11 @@ Unter der Annahme, dass B1 und A1-6 jeweils eine Sekunde dauern, und der Rest ke
 218 down(S1)		//S1 = -1, P1 Wartet
 
 300 down(S2)		//P2 startet: S2 = -1
-305 A1
+305 (A1)
 307 up(S3)		//S3 = -1
 308 up(S3)		//S3 = 0, P3 Startet
 309 down(S2)		//S2 = -2, P2 Wartet
-310 A2
+310 (A2)
 311 up(S1)		//S1 = 0, P1 Startet
 312 down(S2)		//S2 = -1, P2 Wartet  Ende: S1 = 0, S2 = -1, S3 = -2		
 
