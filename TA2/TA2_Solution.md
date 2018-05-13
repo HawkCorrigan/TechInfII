@@ -129,7 +129,7 @@ typedef struct semaphor{
 	wait(){
 		while(!TestAndAdd(a, b, -1)){}
 	}
-	post(){
+	signal(){
 		TestAndAdd(a,b, 1)
 	}
 }
