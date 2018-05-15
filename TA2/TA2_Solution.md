@@ -82,6 +82,7 @@ WT(D) = 15 + 20 = 35\
 WT(E) = 20 + 20 + 10 + 10 + 5 + 5 + 5 + 5 + 5 + 5 = 80
 
 WT = 50\
+**Die Wartezeit wird nur bis zum ersten Start des Prozesses gezaählt: WT = 10**
 TT(A) = 190\
 TT(B) = 35\
 TT(C) = 75\
@@ -164,37 +165,37 @@ Es ist nicht starvation free, da ein Philosoph nachdem er fertig ist mit Essen u
 Unter der Annahme, dass B1 und A1-6 jeweils eine Sekunde dauern, und der Rest keine Zeit benötigt sieht das Bild nach 9s wie oben skizziert aus. Läuft das Programm in einer Endlosschleife ist nach weiteren 8s ist ein um 2 verschobenes Dreieck der selben Form gezeichnet. Nach 3 weiteren Sekunden, also bei Sekunde 20 befinden sich der Zeichnkopf demnach bei \
 **(-2, -2)**.
 
+**die Threads kommen nicht aus dem ersten down(S1) raus. Deswegen bleibt der Kopf bei der Startposition (2,0)**
+
 ### 2.
 ```
 101 Semaphore S1=0
 102 Semaphore S2=-1
-103 Semaphore S3=-2
+103 Semaphore S3=0
 104 start(P1,P2,P3)
 
-200 down(S1)        //Start: P1 startet: S1 = -1
+200                 //Start: P1 startet: S1 = 0
 205 (A1)
 210 (A4)
+211 up(s2)          //S2 = -1
 212 up(S2)          //S2 = 0, P2 Startet
-213 down(S1)        //S1 = -2, P1 Wartet
+213 down(S1)        //P1 Wartet: S1 = -1, P1 Startet: S1 = 0
 215 (A3)
-216 up(S2)        //S2 = -1
 217 up(S2)        //S2 = 0, P2 Startet
 218 down(S1)        //S1 = -1, P1 Wartet
 
-300 down(S2)        //P2 startet: S2 = -1
+300 down(S2)        //P2 wartet: S2 = -2, P2 startet: S2 = 0
 305 (A1)
-307 up(S3)        //S3 = -1
-308 up(S3)        //S3 = 0, P3 Startet
-309 down(S2)        //S2 = -2, P2 Wartet
+307 up(S3)          //S3 = 0, P3 Startet
+309 down(S2)        //P2 Wartet: S2 = -1, P2 Startet: S2 = 0
 310 (A2)
 311 up(S1)        //S1 = 0, P1 Startet
-312 down(S2)        //S2 = -1, P2 Wartet  Ende: S1 = 0, S2 = -1, S3 = -2        
+312 down(S2)        //S2 = -1, P2 Wartet  Ende: S1 = 0, S2 = -1, S3 = 0        
 
-400 down(S3)        //P3 Startet: S3 = -1
+400 down(S3)        //P3 Wartet: S3 = -1, P3 Startet: S3 = 0
 405 (A5)
 410 (A6)
 415 (A2)
-416 up(S1)        //S1 = -1
 417 up(S1)        //S1 = 0, P1 Startet
-418 down(S3)        //S3 = -2, P3 Wartet
+418 down(S3)        //S3 = -1, P3 Wartet
 ```
