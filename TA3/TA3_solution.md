@@ -32,8 +32,8 @@ Bei der externen Fragmentierung kann es zu den Phänomen kommen, dass obwohl gen
 
 ### f)
 
-// TODO
-
+Es gibt mindestens soviele Fehler wie Anzahl Seiten, da dass Befüllen Fehler verursacht.
+Es gibt maximal so viele Seitenfehler wie Speicherzugriffe.
 ## Aufgabe 2: Virtueller Speicher - Demand Paging
 
 ### a)
@@ -100,3 +100,20 @@ Falls die Seite noch nicht in LRUi und nicht in LRUi+1 ist, wird dieselbe Seite 
 Falls die Seite nicht in LRUi aber in LRUi+1 ist, wird eine Seite aus LRUi entfernt und die Seite eingefügt, LRUi+1 jedoch nicht beachtet. Auch dann gilt die Behauptung.
 
 Auch dann gilt die Behauptung weiterhin
+
+
+### Aufgabe 4
+a) ii.) --> Sonst kein Verschieben des Speichers möglich (?)
+b)	 		A | B | C | D | E
+	First-Fit	    1   3       2  (4 nicht möglich)
+	Best-Fit	    2   3   1   4
+	Worst-Fit	    2          1&3 (4 nicht möglich)
+c)	First-Fit = 288+88+183 = 559	(Plus Freie Speicherblöcke?)
+	Best-Fit  = 83+88+88+174 = 433
+	Worst-Fit = 83+276 = 359
+d)	First-Fit, da nur sehr wenig Berechnungen gemacht werden müssen
+	--> Findet passende Lücke = Ende der Suche
+e)	i.)	F = X-1 Bytes
+	ii.)	Fø = (X-1)/2 
+	iii.)	Fmin = 0 bei L = n*X (bei perfekt passenden Prozessen?)
+
