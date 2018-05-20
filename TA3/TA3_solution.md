@@ -50,6 +50,7 @@ Es gibt maximal so viele Seitenfehler wie Speicherzugriffe.
 
 ### Aufgabe 3
 a.)
+
 |     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
 | --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |  1. | 3 | 3 | 3 | 2 | 1 | 0 | 3 | 3 | 3 | 2 | 4 | 4 | 2 | 0 | 0 | 2 | 3 | 1 |
@@ -68,6 +69,7 @@ a.)
 Größerer Speicher führt zu mehr Pagefaults == "Belady's Anomaly"
 
 b.)
+
 |     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
 | --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
 |  1. | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
@@ -103,17 +105,31 @@ Auch dann gilt die Behauptung weiterhin
 
 
 ### Aufgabe 4
-a) ii.) --> Sonst kein Verschieben des Speichers möglich (?)
-b)	 		A | B | C | D | E
-	First-Fit	    1   3       2  (4 nicht möglich)
-	Best-Fit	    2   3   1   4
-	Worst-Fit	    2          1&3 (4 nicht möglich)
-c)	First-Fit = 288+88+183 = 559	(Plus Freie Speicherblöcke?)
-	Best-Fit  = 83+88+88+174 = 433
-	Worst-Fit = 83+276 = 359
-d)	First-Fit, da nur sehr wenig Berechnungen gemacht werden müssen
-	--> Findet passende Lücke = Ende der Suche
-e)	i.)	F = X-1 Bytes
-	ii.)	Fø = (X-1)/2 
-	iii.)	Fmin = 0 bei L = n*X (bei perfekt passenden Prozessen?)
+a.) 
+	ii.) --> Sonst kein Verschieben des Speichers möglich (?)
+
+b.)	
+
+|               | A | B | C | D | E |                  |
+|:-------------:|:-:|:-:|:-:|:-:|:-:|:----------------:|
+|   FirstFit    |   | 1 | 3 |   | 2 | (4 nicht möglich)|
+|    BestFit    |   | 2 | 3 | 1 | 4 |                  |
+|   WorstFit    |   | 2 |   |   |1/3| (4 nicht möglich)|
+
+c.)	
+
+- First-Fit = 288+88+183 = 559	(Plus Freie Speicherblöcke?)
+- Best-Fit  = 83+88+88+174 = 433
+- Worst-Fit = 83+276 = 359
+	
+d.)
+
+- First-Fit, da nur sehr wenig Berechnungen gemacht werden müssen
+- ---> Findet passende Lücke = Ende der Suche
+	
+e.)	
+        
+1.	F = X-1 Bytes
+2.	Fø = (X-1)/2 
+3.	Fmin = 0 bei L = n*X (bei perfekt passenden Prozessen?)
 
