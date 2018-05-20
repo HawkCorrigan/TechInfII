@@ -47,3 +47,56 @@ Bei der externen Fragmentierung kann es zu den Phänomen kommen, dass obwohl gen
 ### c)
 
 // TODO
+
+### Aufgabe 3
+a.)
+|     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+| --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|  1. | 3 | 3 | 3 | 2 | 1 | 0 | 3 | 3 | 3 | 2 | 4 | 4 | 2 | 0 | 0 | 2 | 3 | 1 |
+|  2. |   | 2 | 2 | 1 | 0 | 3 | 2 | 2 | 2 | 4 | 1 | 1 | 1 | 2 | 2 | 3 | 1 | 0 |
+|  3. |   |   | 1 | 0 | 3 | 2 | 4 | 4 | 4 | 1 | 0 | 0 | 0 | 3 | 3 | 1 | 0 | 4 |
+|     | F | F | F | F | F | F | F |   |   | F | F |   | F | F |   | F | F | F |
+
+|     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+| --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|  1. | 3 | 3 | 3 | 3 | 3 | 3 | 2 | 1 | 0 | 4 | 3 | 2 | 2 | 1 | 0 | 4 | 3 | 2 |
+|  2. |   | 2 | 2 | 2 | 2 | 2 | 1 | 0 | 4 | 3 | 2 | 1 | 1 | 0 | 4 | 3 | 2 | 1 |
+|  3. |   |   | 1 | 1 | 1 | 1 | 0 | 4 | 3 | 2 | 1 | 0 | 0 | 4 | 3 | 2 | 1 | 0 |
+|  3. |   |   |   | 0 | 0 | 0 | 4 | 3 | 2 | 1 | 0 | 4 | 4 | 3 | 2 | 1 | 0 | 4 |
+|     | F | F | F | F |   |   | F | F | F | F | F |   | F | F | F | F | F | F |
+
+Größerer Speicher führt zu mehr Pagefaults == "Belady's Anomaly"
+
+b.)
+|     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+| --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|  1. | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+|  2. |   | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 |
+|  3. |   |   | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 4 | 3 | 2 | 1 |
+|     | F | F | F | F | F | F | F |   |   | F | F | F | F | F |   | F | F | F |
+
+|     | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+| --- |:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|:-:|
+|  1. | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 | 4 |
+|  2. |   | 3 | 2 | 1 | 0 | 3 | 2 | 3 | 3 | 2 | 1 | 0 | 4 | 2 | 3 | 2 | 1 | 0 |
+|  3. |   |   | 3 | 2 | 1 | 0 | 3 | 2 | 4 | 3 | 2 | 1 | 0 | 4 | 4 | 3 | 2 | 1 |
+|  3. |   |   |   | 3 | 2 | 1 | 0 | 0 | 0 | 4 | 3 | 2 | 1 | 0 | 0 | 4 | 3 | 2 |
+|     | F | F | F | F |   |   | F |   |   | F | F | F |   | F |   | F | F | F |
+
+Belady's Anomaly tritt bei LRU nicht auf. Die Vergrößerung des Speichers hat 3 Page Faults eliminiert.
+
+
+c.) 
+Es gelten die Definitionen aus der Aufgabenstellung.
+Nennen wir den Schritt des k-ten Seitenzugriff zk.
+
+IA: Für zk=1 gilt:
+LRUi und LRUi+1 sind beide leer und es wird zu Page Faults kommen. D.h. die jeweilige Seite wird auf den Speicher geschrieben und die Behauptung gilt.
+
+IS: Für k=n gilt die Behauptung:
+Daraus folgt, dass wenn die abgefragte Seite in LRUi ist sie auch in LURi+1 sein muss und die Behauptung gilt.
+Falls die Seite noch nicht in LRUi und nicht in LRUi+1 ist, wird dieselbe Seite aus beiden rausgeschmissen(sekundärspeicher) und die neue Seite hereingepackt.
+
+Falls die Seite nicht in LRUi aber in LRUi+1 ist, wird eine Seite aus LRUi entfernt und die Seite eingefügt, LRUi+1 jedoch nicht beachtet. Auch dann gilt die Behauptung.
+
+Auch dann gilt die Behauptung weiterhin
