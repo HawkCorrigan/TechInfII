@@ -24,3 +24,13 @@ c)--> 3,75s/Seite
 	--> 0,65% Auslastung
     
 --> DMA am besten geeignet, Interrupts wegen einzelner Zeichen nur bedingt geeignet
+
+2.)	--> ts = 2ms | 40960 bytes | 512 byte Sektor | 160 Sektoren/Spur
+a)	--> 15000rpm	--> 15000/60 = 250/s	--> 1/250s /round = 0,004s /round = tr
+	--> tr/2 = øtd = 2ms
+b)	--> T = 2ms + 2ms + 40960/512*160 * 4ms = 6ms
+c)	--> 1000/6 ~ 166 Blöcke
+d)	--> 50 Blöcke	--> T = 20ms	--> 20ms = 2 + x/2 + 40960/(512*160) * x
+		--> x = 18ms = tr
+		--> 55,55rps	--> *60 = 3333rpm
+e)	// TO-DO
