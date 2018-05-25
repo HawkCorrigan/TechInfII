@@ -34,3 +34,50 @@ d)	--> 50 Blöcke	--> T = 20ms	--> 20ms = 2 + x/2 + 40960/(512*160) * x
 		--> x = 18ms = tr
 		--> 55,55rps	--> *60 = 3333rpm
 e)	// TO-DO
+
+
+3.)
+a.)
+RAID 0: mindestens 1 Festplatte
+RAID 1: mindestens 2 Festplatten
+RAID 5: mindestens 3 Festplatten
+RAID 6: mindestens 4 Festplatten
+maximal ist technisch nahezu beliebig
+
+RAID 0: hoch
+RAID 1: normal-schnell lesend, tief schreibend
+RAID 5: tief-normal lesend, hoch schreibend
+RAID 6: tief-normal lesend, hoch schreibend
+
+Annahme dass n Festplatten
+RAID0: Speicherkapazität n
+RAID1: Speicherkapazität 1 (kleinste)
+RAID5: Speicherkapazität n-1
+RAID6: Speicherkapazität n-2
+
+Ausfallsicherheit: (Anzahl ausfallender Festplatten)
+RAID0: 0
+RAID1: n-1
+RAID5: 1
+RAID6: 2
+
+b.)
+RAID50: Raid0-Array aus Raid5
+	Sehr schnell da Schreib und Lesevorgänge auf zwei identische Festplatten-Arrays verteilt werden.
+	Redundant sodass eine Festplatte ausfallen kann.
+
+RAID51: Raid1-Array aus Raid5
+	Bessere Redundanz aber schlechterer Durchsatz als Raid50
+	Smin=3 Smax=4
+
+
+JBOD: 	Just a bunch of disks
+	Keine Redundanz
+	Steuerung mehrerer Festplatten über einen Festplattencontroller
+	Unabängigkeit der Disks als Vorteil?
+	Mehr Speicherplatz als Raid1
+
+Ausserdem:
+Weitere Raid Kombinationen: Raid 01, Raid 03 .....
+Raid 1.5 als Kombination der Vorteile von Raid 0 und Raid 1 (Lesen wie Raid0, Schreiben wie Raid 1)
+Matrix Raid: Implementation verschiedener Raid Technologien auf demselben Festplatten-Array
